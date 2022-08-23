@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const findFalse = function (heightsArr) {
+        // 1. 난쟁이들의 키의 합 구하기
+        const sum = heightsArr.reduce(function (acc, v) {
+          return acc + v;
+        }, 0);
+
+        // 2. 가짜 난쟁이의 키 총합 구하기
+        const falseSum = sum - 100;
+
+        let index1 = 0;
+        let index2 = 0;
+
+        // 3. 배열을 순회해서 가짜 난쟁이 찾기(이중 반복문)
+        for (let i = 0; i < heightsArr.length; i++) {
+          for (let j = 0; j < heightsArr.length; j++) {
+            if (heightsArr[i] + heightsArr[j] === falseSum) {
+              index1 = i;
+              index2 = j;
+              break;
+              // 이 때, index1 < index2
+            }
+          }
+        }
+
+        // 4. 배열에서 두 가짜 난쟁이들이 속한 index 제거 후, 출력
+        heightsArr.splice(index1, 1);
+        heightsArr.splice(index2, 1);
+
+        // 5. 배열 출력
+        console.log(heightsArr);
+      };
+
+      findFalse([20, 7, 23, 19, 10, 15, 25, 8, 13]);
+    </script>
+  </body>
+</html>
